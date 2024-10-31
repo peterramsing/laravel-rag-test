@@ -12,7 +12,7 @@ class TextEmbedding extends Model
 
     use HasNeighbors;
 
-    protected $fillable = ['source_text_id', 'embedding'];
+    protected $fillable = ['source_text_id', 'embedding', 'excerpt'];
 
     protected $casts = [
         'embedding' => Vector::class,

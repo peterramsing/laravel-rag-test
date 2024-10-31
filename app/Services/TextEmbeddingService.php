@@ -43,6 +43,7 @@ class TextEmbeddingService
             TextEmbedding::create([
                 'source_text_id' => $sourceText->id,
                 'embedding' => json_encode($embedding),
+                'excerpt' => $chunkText,
             ]);
         }
     }
@@ -57,9 +58,9 @@ class TextEmbeddingService
         $queryEmbedding = $response->embeddings[0]->embedding;
         $queryVector = new Vector($queryEmbedding);
 
-        $results = TextEmbedding::query()->nearestNeighbors('embedding', $queryVector, Distance::L2)->take(1)->get();
+        $results = TextEmbedding::query()->nearestNeighbors('embedding', $queryVector, Distance::L2)->take(5)->get();
 
-        $contextChunks = $results->map(fn($result) => $result->sourceText->text)->toArray();
+        $contextChunks = $results->map(fn($result) => $result->excerpt)->toArray();
         $context = implode("\n", $contextChunks);
 
         $response = OpenAI::chat()->create([

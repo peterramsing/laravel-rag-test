@@ -11,7 +11,9 @@ class CreateTextEmbeddingsTable extends Migration
         Schema::create('text_embeddings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('source_text_id')->constrained('source_texts')->onDelete('cascade');
-            $table->addColumn('vector', 'embedding', ['dimensions' => 1536])->nullable();            $table->timestamps();
+            $table->addColumn('vector', 'embedding', ['dimensions' => 1536])->nullable();
+            $table->text('excerpt');
+            $table->timestamps();
         });
     }
 
