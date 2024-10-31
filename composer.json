@@ -7,7 +7,10 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "openai-php/laravel": "^0.10.2",
+        "pgvector/pgvector": "^0.2.0",
+        "yethee/tiktoken": "^0.7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

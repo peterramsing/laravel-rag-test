@@ -22,7 +22,24 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
         <div class="m-4">
-            <h1>Rag Test</h1>
+            <h1>Rag Testing</h1>
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <form action="{{ route('ragtest.store') }}" method="POST">
+                @csrf
+                <div class="mb-4">
+                    <label for="text" class="block text-sm font-medium text-gray-700">Text</label>
+                    <textarea id="text" name="text" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 disabled:opacity-25 transition">Submit</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RagTestController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RagTestController::class, 'index']);
+Route::post('/', [RagTestController::class, 'store'])->name('ragtest.store');
