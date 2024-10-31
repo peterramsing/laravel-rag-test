@@ -25,4 +25,17 @@ class RagTestController extends Controller
 
         return redirect()->back()->with('success', 'Text and embeddings saved successfully.');
     }
+
+
+    public function search(Request $request, TextEmbeddingService $textEmbeddingService)
+    {
+        $request->validate([
+            'query' => 'required|string',
+        ]);
+
+        $query = $request->input('query');
+        $response = $textEmbeddingService->searchEmbeddings($query);
+
+        return view('ragtest', ['response' => $response]);
+    }
 }

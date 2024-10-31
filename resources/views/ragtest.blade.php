@@ -40,6 +40,24 @@
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 disabled:opacity-25 transition">Submit</button>
                 </div>
             </form>
+
+            <form action="{{ route('ragtest.search') }}" method="POST" class="mt-6">
+                @csrf
+                <div class="mb-4">
+                    <label for="query" class="block text-sm font-medium text-gray-700">Query</label>
+                    <input type="text" id="query" name="query" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition">Query</button>
+                </div>
+            </form>
+
+            @if (isset($response))
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold">Response</h2>
+                    <p>{{ $response }}</p>
+                </div>
+            @endif
         </div>
     </body>
 </html>
