@@ -48,7 +48,7 @@ class TextEmbeddingService
         }
     }
 
-    public function searchEmbeddings(string $query): string
+    public function searchEmbeddings(string $query): array
     {
         $response = OpenAI::embeddings()->create([
             'model' => 'text-embedding-3-small',
@@ -69,10 +69,10 @@ class TextEmbeddingService
                 ['role' => 'system', 'content' => 'You are a chatbot that should use only the <context> given to answer the <question> given. If you do not find the answer then say that you cannot find the answer in the given context.'],
                 ['role' => 'user', 'content' => "<context>$context</context><question>$query</question>"],
             ],
-            'max_tokens' => 150,
+            'max_tokens' => 300,
         ]);
 
-        return $response->choices[0]->message->content;
+        return [$response->choices[0]->message->content, $contextChunks];
     }
 
     private function chunkText(string $text): array

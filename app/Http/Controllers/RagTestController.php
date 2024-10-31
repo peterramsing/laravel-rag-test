@@ -26,7 +26,6 @@ class RagTestController extends Controller
         return redirect()->back()->with('success', 'Text and embeddings saved successfully.');
     }
 
-
     public function search(Request $request, TextEmbeddingService $textEmbeddingService)
     {
         $request->validate([
@@ -34,8 +33,8 @@ class RagTestController extends Controller
         ]);
 
         $query = $request->input('query');
-        $response = $textEmbeddingService->searchEmbeddings($query);
+        [$response, $contextChunks] = $textEmbeddingService->searchEmbeddings($query);
 
-        return view('ragtest', ['response' => $response]);
+        return view('ragtest', ['response' => $response, 'contextChunks' => $contextChunks]);
     }
 }

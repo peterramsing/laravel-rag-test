@@ -58,6 +58,17 @@
                     <p>{{ $response }}</p>
                 </div>
             @endif
+
+            @if (isset($contextChunks))
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold">Context Chunks</h2>
+                    <ul>
+                        @foreach ($contextChunks as $chunk)
+                            <li class="pb-6">{{ $chunk }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </body>
 </html>
